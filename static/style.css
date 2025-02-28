@@ -1,0 +1,398 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: url("fundo.jpg") no-repeat center top;
+  color: #ffffff;
+  min-height: 100vh;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Animação mais suave */
+  animation: moveBackground 50s infinite alternate ease-in-out;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 30%; /* Posição inicial da imagem */
+  }
+  100% {
+    background-position: 100% 60%; /* Posição final da imagem */
+  }
+}
+
+
+
+/* Container do Gerador de Perguntas */
+.qa-generator {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 15px rgb(23, 70, 172);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1000px;
+  text-align: center;
+  margin: auto;
+}
+
+/* Estilo do Título */
+.qa-generator h1{
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: #ffffff; /* Verde elegante */
+}
+
+.qa-generator .input-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Estilo do Input */
+.qa-generator input[type="text"] {
+  background: transparent;
+  box-shadow: 0 0 5px rgb(148, 146, 146);
+  height: 50px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Botão de Gerar Perguntas */
+
+#generate-btn {
+    background-color: rgba(23, 70, 172, 0.829);
+    color: #fff;
+    width: 7em;
+    height: 2.9em;
+    border: #3654ff 0.2em solid;
+    border-radius: 12px;
+    text-align: right;
+    transition: all 0.6s ease;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button .text{
+    font-size: 16px;
+    font-weight: medium;
+
+  }
+#generate-btn:hover {
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+#generate-btn #flecha-direita {
+    width: 1.6em;
+    margin: 1em -0.6em 1em -0.2em;
+    display: flex;
+    transition: all 0.6s ease;
+    font-size: 25px;
+  }
+
+  #generate-btn:hover #flecha-direita {
+    transform: translateX(5px);
+  }
+  
+
+#bt-download {
+    width: 150px;
+    height: 55px;
+    padding: 12px;
+    background: rgba(23, 70, 172, 0.829);
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    float: right;
+    margin-bottom: 30px;
+}
+
+
+#bt-download:hover {
+    transform: scale(1.1);
+}
+
+#bx-btn{
+    font-size: 30px;  /* Ajuste o tamanho do ícone */
+    color: rgb(255, 255, 255);      /* Cor do ícone */
+    margin-top: 1px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+
+/* Área de Perguntas Geradas */
+.qa-generator pre {
+    background: transparent; /* Degradê sutil */
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    padding: 30px 40px; /* Mais espaço interno */
+    border-radius: 10px; /* Bordas mais arredondadas */
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    white-space: pre-wrap;
+    max-height: 1000px; /* Definindo altura máxima */
+    overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+    margin-bottom: 30px;
+}
+
+/* Estilo do Placeholder */
+input::placeholder {
+    color: #888;          /* Cor do texto do placeholder */
+    font-style: italic;   /* Deixa o texto em itálico */
+    font-size: 16px;      /* Tamanho da fonte */
+    opacity: 1;
+    padding-top: 5px;     /* Ajuste de espaço para o placeholder ficar mais no topo */
+}
+
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid rgb(23, 70, 172); /* Cor do spinner */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+    margin: 5px auto;
+    margin-bottom: 0px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#robot {
+    width: 34.9px;
+    height: 37.5px;
+    margin-bottom: -8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#robot:hover {
+  animation: robo-andando 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes robo-andando {
+  0% {
+      transform: translateX(-3px) rotate(-3deg); /* Move para a esquerda e inclina */
+  }
+  100% {
+      transform: translateX(3px) rotate(3deg); /* Move para a direita e inclina */
+  }
+}
+
+
+/* Estilo do Rodapé */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+footer p {
+    margin-right: 10px; /* Espaço entre o texto e o botão */
+}
+
+.btn-linkedin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #0a66c2;
+  }
+  
+  .linkedin {
+    width: 100%;
+    transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .linkedin svg {
+    width: 25px;
+    height: 20px;
+  }
+  
+  .linkedin svg path {
+    fill: white;
+  }
+  
+  .btn-linkedin:hover {
+    width: 135px;
+    border-radius: 12px;
+    transition-duration: 0.3s;
+  }
+  
+  .btn-linkedin:hover .linkedin {
+    width: 30%;
+    transition-duration: 0.3s;
+    padding-left: 10px;
+  }
+  
+  .btn-linkedin:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: 0.5s;
+    padding-right: 10px;
+    margin-top: 5px;
+    margin-right: -2px;
+
+  }
+  .btn-linkedin:active {
+    transform: translate(2px, 2px);
+  }
+
+  .btn-linkedin .text{
+    margin-top: 5px;
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: 0.3s;
+  }
+
+footer span{
+    margin-top: 4px;
+}
+
+.container {
+    flex: 1; /* Faz com que o conteúdo cresça e empurre o footer para baixo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo do Botão de Voltar */
+#back-btn {
+    position: absolute;  /* Posicionamento absoluto */
+    top: 20px;           /* Distância do topo */
+    left: 20px;          /* Distância da esquerda */
+    color: rgb(255, 255, 255);
+    font-size: 14px;      /* Tamanho menor */
+    border: #3654ff 0.2em solid;
+    background-color: rgba(23, 70, 172, 0.829);
+    border-radius: 12px;  /* Bordas arredondadas */
+    cursor: pointer;
+    width: 90px;
+    height: 40px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  #back-btn:hover {
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  #back-btn #flecha-esquerda {
+    font-size: 25px;
+    width: 1.6em;
+    margin: 1em -0.8em 1em -0.1em;
+    display: flex;
+    transition: all 0.6s ease;
+  }
+
+  #back-btn:hover #flecha-esquerda {
+    transform: translateX(-5px);
+  }
+
+ /* Contêiner que envolve o input e o botão */
+ .input-box2 {
+  position: relative; /* Importante para que o botão possa ser posicionado dentro */
+  display: flex;
+  width: 100%; /* Para garantir que ocupe toda a largura disponível */
+}
+
+/* Estilo do campo de input */
+.input-box2 input {
+  width: 100%; /* O campo de input ocupará toda a largura disponível */
+  padding-right: 50px; /* Deixa espaço para o botão */
+  height: 2.9em;
+  border: #3654ff 0.2em solid;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+/* Estilo do botão dentro do input */
+#gerar-btn {
+  position: absolute; /* Coloca o botão dentro do campo de input */
+  right: 10px; /* Alinha o botão à direita */
+  top: 50%; /* Centraliza o botão verticalmente */
+  transform: translateY(-50%); /* Ajusta para centralizar verticalmente */
+  background-color: rgba(23, 70, 172, 0.829);
+  color: #fff;
+  width: 7em;
+  height: 2.9em;
+  border: #3654ff 0.2em solid;
+  border-radius: 12px; /* Tornando o botão redondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ease;
+  cursor: pointer;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+#gerar-btn:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#gerar-btn:hover #flecha-direita {
+  transform: translateX(5px);
+}
+
+/* Estilo do ícone dentro do botão */
+#gerar-btn #flecha-direita {
+    width: 1.6em;
+    margin: 1em -0.6em 1em -0.2em;
+    display: flex;
+    transition: all 0.6s ease;
+    font-size: 25px;
+}

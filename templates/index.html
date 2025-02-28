@@ -5,87 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assistente de IA</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></head>
-    <body>
-        <div class="container">
-            <div class="qa-generator">
-                <h1>Answer <img id="robot" src="../static/AnswerAI.png"> AI</h1>
-                <form action="/" method="POST" id="qa-form" autocomplete="off">
-                    <div class="input-box">
-                        <input type="text" placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="topic" name="topic" required>
-                        <button type="submit" id="generate-btn">
-                            <i id="flecha-direita" class='bx bx-right-arrow-alt' ></i>
-                            <div class="text">
-                                Gerar
-                            </div>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <div class="qa-generator">
+            <h1>Answer <img id="robot" src="../static/AnswerAI.png"> AI</h1>
+            <form action="/" method="POST" id="qa-form" autocomplete="off">
+                <div class="input-box">
+                    <input type="text" placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="topic" name="topic" required>
+                    <button type="submit" id="generate-btn">
+                        <i id="flecha-direita" class='bx bx-right-arrow-alt'></i>
+                        <div class="text">Gerar</div>
+                    </button>
+                    <div id="loading1" class="loading-spinner" style="display: none;">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </form>
+
+            {% if questions %}
+                <pre>{{ questions }}</pre>
+                <button type="submit" id="back-btn" onclick="window.location.href='/';">
+                    <i id="flecha-esquerda" class='bx bx-left-arrow-alt'></i>
+                    <div class="text">Voltar</div>
+                </button>
+
+                <form action="{{ url_for('download_csv') }}" method="GET">
+                    <input type="hidden" name="qa_content" value="{{ questions }}">
+                    <button type="submit" id="bt-download">
+                        <i id='bx-btn' class='bx bx-cloud-download'></i><span>Download</span>
+                    </button>
+                </form>
+
+                <form action="/" method="POST" id="qa-form2" autocomplete="off">
+                    <div class="input-box2">
+                        <input type="text" placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="topic2" name="topic" required>
+                        <button type="submit" id="gerar-btn">
+                            <i id="flecha-direita" class='bx bx-right-arrow-alt'></i>
+                            <div class="text">Gerar</div>
                         </button>
+                        <div id="loading2" class="loading-spinner" style="display: none;">
+                            <div class="spinner"></div>
+                        </div>
                     </div>
                 </form>
-    
-                <div id="loading" class="loading-spinner" style="display: none;">
-                    <div class="spinner"></div>
-                </div>
-                {% if questions %}
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            document.getElementById("qa-form").style.display = "none";
-                        });
-                    </script>
-                    <pre>{{ questions }}</pre>
-                        <button type="submit" id="back-btn" onclick="window.location.href='/';">
-                            <i id="flecha-esquerda" class='bx bx-left-arrow-alt'></i>
-                            <div class="text">
-                                Voltar
-                            </div>
-                    </a>
-                    <form action="{{ url_for('download_csv') }}" method="GET">
-                        <input type="hidden" name="qa_content" value="{{ questions }}">
-                        <button type="submit" id="bt-download">
-                            <i id='bx-btn' class='bx bx-cloud-download'></i><span>Download</span>
-                        </button>
-                    </form>
-                    <form action="/" method="POST" id="qa-form" autocomplete="off">
-                        <div class="input-box2">
-                            <input type="text" placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="topic2" name="topic" required>
-                            <button type="submit" id="gerar-btn">
-                                <i id="flecha-direita" class='bx bx-right-arrow-alt' ></i>
-                                <div class="text">
-                                    Gerar
-                                </div>
-                            </button>
-                        </div>
-                    </form>
-                {% endif %}
-            </div>
+            {% endif %}
         </div>
-    
-        <footer>
-            <p>&copy; Desenvolvido por <strong>Gabriel Aires</strong></p>
-            <a href="https://www.linkedin.com/in/gabriel-henrique-aires" target="_blank" class="btn-linkedin">
-                <div class="linkedin">
-                    <svg
-                        fill="white"
-                        class="svgIcon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="1.6em"
-                        viewBox="0 0 448 512"
-                    >
-                        <path
-                            d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
-                        ></path>
-                    </svg>
-                    <div class="text">LinkedIn</div> 
-                </div>
-            </a>
-        </footer>
-    </body>
-    <script>
-        // Mostrar o ícone de carregamento ao enviar o formulário e esconder o botão
-        document.getElementById("qa-form").addEventListener("submit", function() {
-            // Esconde o botão de "Gerar Perguntas"
-            document.getElementById("generate-btn").style.display = "none"; 
-            // Exibe o ícone de carregamento
-            document.getElementById("loading").style.display = "block"; 
-        });
-    </script>
+    </div>
+
+    <footer>
+        <p>&copy; Desenvolvido por <strong>Gabriel Aires</strong></p>
+        <a href="https://www.linkedin.com/in/gabriel-henrique-aires" target="_blank" class="btn-linkedin">
+            <div class="linkedin">
+                <svg fill="white" class="svgIcon" xmlns="http://www.w3.org/2000/svg" height="1.6em" viewBox="0 0 448 512">
+                    <path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"></path>
+                </svg>
+                <div class="text">LinkedIn</div> 
+            </div>
+        </a>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
 </html>

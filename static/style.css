@@ -27,7 +27,22 @@ body {
   }
 }
 
-
+.topic {
+  flex: 1; /* Faz o textarea ocupar o espaço restante */
+  background: transparent;
+  border-radius: 12px;
+  border: none;
+  resize: none;
+  overflow-y: hidden;
+  color: white;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+  min-height: 60px;
+  margin-left: -10px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
 
 /* Container do Gerador de Perguntas */
 .qa-generator {
@@ -53,49 +68,65 @@ body {
 }
 
 .qa-generator .input-box {
-  position: relative;
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
   width: 100%;
-  margin-bottom: 20px;
-}
-
-/* Estilo do Input */
-.qa-generator input[type="text"] {
   background: transparent;
   box-shadow: 0 0 5px rgb(148, 146, 146);
-  height: 50px;
+  min-height: 60px;
   padding: 12px;
   border: none;
   border-radius: 12px;
   color: white;
   outline: none;
   font-size: 16px;
-  width: 100%;
 }
 
-/* Botão de Gerar Perguntas */
+/* Botãde Gerar Perguntas */
 
 #generate-btn {
-    background-color: rgba(23, 70, 172, 0.829);
-    color: #fff;
-    width: 7em;
-    height: 2.9em;
-    border: #3654ff 0.1em solid;
-    border-radius: 12px;
-    text-align: right;
-    transition: all 0.6s ease;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    align-items: center;
-    justify-content: center;
+  background-color: rgba(23, 70, 172, 0.829);
+  color: #fff;
+  width: 7em;
+  height: 2.9em;
+  border: #3654ff 0.1em solid;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+}
+
+@media (max-width: 600px) {
+  #generate-btn {
+    width: 4em; /* Reduz a largura do botão */
+    height: 2.9em; /* Esconde o texto */
+    padding: 0;
   }
-  
+
+  #generate-btn .text {
+    font-size: 12px;
+    margin-right: 4px;
+  }
+
+  #generate-btn #flecha-direita {
+    display: block !important; /* Garante que o ícone será visível, mesmo se houver outros estilos */
+    font-size: 16px !important;
+  }
+
+  #generate-btn:hover #flecha-direita {
+    transform: translateX(2px) !important;
+  }
+}
+
   button .text{
     font-size: 16px;
     font-weight: medium;
 
   }
+
 #generate-btn:hover {
     background-color: transparent;
     cursor: pointer;
@@ -114,19 +145,19 @@ body {
   }
 
   #loading1, #loading2 {
-    display: none; /* Inicia oculto */
     border-radius: 12px;
+    text-align: center;
     transition: all 0.6s ease;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    align-items: center;
-    justify-content: center;
+    margin-right: 30px;
 }
 
 #bt-download {
-    width: 150px;
+    width: 130px;
     height: 55px;
     padding: 12px;
     background: rgba(23, 70, 172, 0.829);
@@ -189,10 +220,10 @@ input::placeholder {
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-top: 4px solid rgb(23, 70, 172); /* Cor do spinner */
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     animation: spin 1s linear infinite;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 @keyframes spin {
@@ -354,44 +385,64 @@ footer span{
 
  /* Contêiner que envolve o input e o botão */
  .input-box2 {
-  position: relative; /* Importante para que o botão possa ser posicionado dentro */
   display: flex;
-  width: 100%; /* Para garantir que ocupe toda a largura disponível */
-}
-
-/* Estilo do campo de input */
-.input-box2 input {
-  width: 100%; /* O campo de input ocupará toda a largura disponível */
-  padding-right: 50px; /* Deixa espaço para o botão */
-  height: 2.9em;
-  border: #3654ff 0.2em solid;
+  align-items: center; /* Alinha verticalmente */
+  width: 100%;
+  background: transparent;
+  box-shadow: 0 0 5px rgb(148, 146, 146);
+  min-height: 60px;
+  padding: 12px;
+  border: none;
   border-radius: 12px;
+  color: white;
+  outline: none;
   font-size: 16px;
-}
+  }
+
+
 
 /* Estilo do botão dentro do input */
 #gerar-btn {
-  position: absolute; /* Coloca o botão dentro do campo de input */
-  right: 10px; /* Alinha o botão à direita */
-  top: 50%; /* Centraliza o botão verticalmente */
-  transform: translateY(-50%); /* Ajusta para centralizar verticalmente */
   background-color: rgba(23, 70, 172, 0.829);
   color: #fff;
   width: 7em;
   height: 2.9em;
   border: #3654ff 0.1em solid;
-  border-radius: 12px; /* Tornando o botão redondo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 12px;
+  text-align: center;
   transition: all 0.6s ease;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+}
+
+@media (max-width: 600px) {
+  #gerar-btn {
+    width: 4em; /* Reduz a largura do botão */
+    height: 2.9em; /* Esconde o texto */
+    padding: 0;
+  }
+
+  #gerar-btn .text {
+    font-size: 12px;
+    margin-right: 4px;
+  }
+
+  #gerar-btn #flecha-direita {
+    display: block !important; /* Garante que o ícone será visível, mesmo se houver outros estilos */
+    font-size: 16px !important;
+  }
+
+  #gerar-btn:hover #flecha-direita {
+    transform: translateX(2px) !important;
+  }
 }
 
 /* Efeito ao passar o mouse sobre o botão */
 #gerar-btn:hover {
   background-color: transparent;
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #gerar-btn:hover #flecha-direita {

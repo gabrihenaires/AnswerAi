@@ -13,7 +13,7 @@
             <h1>Answer <img id="robot" src="../static/AnswerAI.png"> AI</h1>
             <form action="/" method="POST" id="qa-form" autocomplete="off">
                 <div class="input-box">
-                    <input type="text" placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="topic" name="topic" required>
+                    <textarea placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="myTextarea" class="topic" oninput="autoResize(this)" name="topic" required></textarea>
                     <button type="submit" id="generate-btn">
                         <i id="flecha-direita" class='bx bx-right-arrow-alt'></i>
                         <div class="text">Gerar</div>
@@ -40,7 +40,7 @@
 
                 <form action="/" method="POST" id="qa-form2" autocomplete="off">
                     <div class="input-box2">
-                        <input type="text" placeholder="Exemplo: Gere 10 perguntas sobre biologia" id="topic2" name="topic" required>
+                        <textarea placeholder="Exemplo: Gere 10 perguntas sobre biologia" class="topic" oninput="autoResize(this)" name="topic" required></textarea>
                         <button type="submit" id="gerar-btn">
                             <i id="flecha-direita" class='bx bx-right-arrow-alt'></i>
                             <div class="text">Gerar</div>

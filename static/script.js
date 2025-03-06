@@ -51,22 +51,21 @@ function autoResize(textarea) {
 
 // Seleciona todos os textareas com a classe .topic
 document.querySelectorAll('.topic').forEach(textarea => {
-    // Adiciona o evento de input para ajustar a altura dinamicamente
-    textarea.addEventListener('input', function() {
-        autoResize(this);
-    });
-
-    // Adiciona o evento de keydown para capturar Enter e Shift+Enter
     textarea.addEventListener('keydown', function(event) {
         const form = this.closest('form'); // Encontra o formulário correto para cada textarea
 
         // Se o usuário pressionar Enter (sem Shift ou Ctrl), envia o formulário
         if (event.key === 'Enter' && !event.ctrlKey && !event.shiftKey) {
             event.preventDefault(); // Impede o comportamento padrão de enviar com Enter
-            
-            // Exibe o ícone de carregamento
-            document.getElementById("generate-btn").style.display = "none"; 
-            document.getElementById("loading1").style.display = "block"; // Alterar para o ID único
+
+            // Verifica qual formulário está sendo submetido e exibe o ícone correto
+            if (form.id === "qa-form") {
+                document.getElementById("generate-btn").style.display = "none"; 
+                document.getElementById("loading1").style.display = "block"; 
+            } else if (form.id === "qa-form2") {
+                document.getElementById("gerar-btn").style.display = "none"; 
+                document.getElementById("loading2").style.display = "block";
+            }
 
             // Submete o formulário após um pequeno delay para garantir que o ícone de carregamento tenha tempo de aparecer
             setTimeout(() => {

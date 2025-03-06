@@ -85,7 +85,7 @@ def format_qa_to_csv(qa_content):
 
     df = pd.DataFrame(data)
     csv_buffer = io.BytesIO()
-    df.to_csv(csv_buffer, index=False, header=False, encoding="utf-8", quotechar='"')
+    df.to_csv(csv_buffer, index=False, sep=",", header=False, encoding="utf-8", quotechar='"', quoting=1)
     csv_buffer.seek(0)
     return csv_buffer
 

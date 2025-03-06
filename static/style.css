@@ -38,6 +38,7 @@ body {
   outline: none;
   font-size: 16px;
   padding: 10px;
+  max-width: 820px;
   min-height: 60px;
   margin-left: -10px;
   margin-top: -10px;
@@ -153,7 +154,8 @@ body {
     border-radius: 12px;
     position: absolute;
     right: 10px;
-    margin-right: 30px;
+    margin-right: 40px;
+    
 }
 
 #bt-download {
